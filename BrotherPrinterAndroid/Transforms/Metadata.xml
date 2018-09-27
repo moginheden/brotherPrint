@@ -1,0 +1,108 @@
+﻿<metadata>
+  <!-- Some Metadata.xml fixes for binding the "Brother Print SDK for
+      Android" (http://www.brother.com/product/dev/mobile/android/) in
+      Xamarin.Android. -->
+
+
+  <!-- Warning BG8401: Skipping Com.Brother.Ptouch.Sdk.LabelInfo.LabelColor, due to a duplicate field, method or nested type name
+ 
+      This one is a bit tricky. Let's first just try removing the whole
+      LabelColor nested class:
+ 
+      <remove-node path="api/package[@name='com.brother.ptouch.sdk']/class[@name='LabelInfo.LabelColor']" />
+ 
+      Now we see an interesting new warning:
+      Warning BG8400: unexpected field type com.brother.ptouch.sdk.LabelInfo.LabelColor in managed type Com.Brother.Ptouch.Sdk.LabelInfo
+ 
+      So there's still something named "LabelColor" in `LabelInfo`!
+      Now let's check in `obj/Debug/api.xml` to find this name. It
+      turns out that `LabelInfo` contains a field named "labelColor",
+      _in addition_ to the nested class named "LabelColor". This causes
+      a conflict in the C# binding because the field is automatically
+      capitalized to "LabelColor". We can resolve the conflict by
+      changing the C# name of either the field or the class. For this
+      example, I'll rename the nested class. -->
+  <attr path="api/package[@name='com.brother.ptouch.sdk']/class[@name='LabelInfo.LabelColor']" name="managedName">LabelInfo.LabelColorEnum</attr>
+
+
+  <!-- Several of the BG8401 warnings are caused by the same problem -->
+
+  <!-- Warning BG8401: Skipping Com.Brother.Ptouch.Sdk.PrinterInfo.Align, due to a duplicate field, method or nested type name -->
+  <attr path="api/package[@name='com.brother.ptouch.sdk']/class[@name='PrinterInfo.Align']" name="managedName">PrinterInfo.AlignEnum</attr>
+
+  <!-- Warning BG8401: Skipping Com.Brother.Ptouch.Sdk.PrinterInfo.Halftone, due to a duplicate field, method or nested type name -->
+  <attr path="api/package[@name='com.brother.ptouch.sdk']/class[@name='PrinterInfo.Halftone']" name="managedName">PrinterInfo.HalftoneEnum</attr>
+
+  <!-- Warning BG8401: Skipping Com.Brother.Ptouch.Sdk.PrinterInfo.Margin, due to a duplicate field, method or nested type name -->
+  <attr path="api/package[@name='com.brother.ptouch.sdk']/class[@name='PrinterInfo.Margin']" name="managedName">PrinterInfo.MarginEnum</attr>
+
+  <!-- Warning BG8401: Skipping Com.Brother.Ptouch.Sdk.PrinterInfo.Orientation, due to a duplicate field, method or nested type name -->
+  <attr path="api/package[@name='com.brother.ptouch.sdk']/class[@name='PrinterInfo.Orientation']" name="managedName">PrinterInfo.OrientationEnum</attr>
+
+  <!-- Warning BG8401: Skipping Com.Brother.Ptouch.Sdk.PrinterInfo.PaperSize, due to a duplicate field, method or nested type name -->
+  <attr path="api/package[@name='com.brother.ptouch.sdk']/class[@name='PrinterInfo.PaperSize']" name="managedName">PrinterInfo.PaperSizeEnum</attr>
+
+  <!-- Warning BG8401: Skipping Com.Brother.Ptouch.Sdk.PrinterInfo.PjFeedMode, due to a duplicate field, method or nested type name -->
+  <attr path="api/package[@name='com.brother.ptouch.sdk']/class[@name='PrinterInfo.PjFeedMode']" name="managedName">PrinterInfo.PjFeedModeEnum</attr>
+
+  <!-- Warning BG8401: Skipping Com.Brother.Ptouch.Sdk.PrinterInfo.Port, due to a duplicate field, method or nested type name -->
+  <attr path="api/package[@name='com.brother.ptouch.sdk']/class[@name='PrinterInfo.Port']" name="managedName">PrinterInfo.PortEnum</attr>
+
+  <!-- Warning BG8401: Skipping Com.Brother.Ptouch.Sdk.PrinterInfo.PrintMode, due to a duplicate field, method or nested type name -->
+  <attr path="api/package[@name='com.brother.ptouch.sdk']/class[@name='PrinterInfo.PrintMode']" name="managedName">PrinterInfo.PrintModeEnum</attr>
+
+  <!-- Warning		Skipping Com.Brother.Ptouch.Sdk.PrinterInfo.CheckPrintEnd, due to a duplicate field, method or nested type name. -->
+  <attr path="api/package[@name='com.brother.ptouch.sdk']/class[@name='PrinterInfo.CheckPrintEnd']" name="managedName">PrinterInfo.CheckPrintEndEnum</attr>
+
+  <!--Warning		Skipping Com.Brother.Ptouch.Sdk.BluetoothPreference.AuthMode, due to a duplicate field, method or nested type name. -->
+  <attr path="api/package[@name='com.brother.ptouch.sdk']/class[@name='BluetoothPreference.AuthMode']" name="managedName">BluetoothPreference.AuthModeEnum</attr>
+
+  <!--Warning		Skipping Com.Brother.Ptouch.Sdk.PrinterInfo.PrintQuality, due to a duplicate field, method or nested type name. -->
+  <attr path="api/package[@name='com.brother.ptouch.sdk']/class[@name='PrinterInfo.PrintQuality']" name="managedName">PrinterInfo.PrintQualityEnum</attr>
+
+  <!--Warning		Skipping Com.Brother.Ptouch.Sdk.PrinterInfo.PjPaperKind, due to a duplicate field, method or nested type name. -->
+  <attr path="api/package[@name='com.brother.ptouch.sdk']/class[@name='PrinterInfo.PjPaperKind']" name="managedName">PrinterInfo.PjPaperKindEnum</attr>
+
+  <!-- Many of the remaining BG8401 warnings are similar, but are caused
+      by a conflict with a pair of getter/setter methods instead of a
+      nested Enum class. If the getter/setter methods provide access
+      to these fields, another option would be to remove the fields
+      from the binding entirely. -->
+
+  <!-- Warning BG8401: Skipping JP.CO.Brother.Adev.Devicefinder.Lib.AbstractSnmpContext.MaxRecvSize, due to a duplicate field, method or nested type name -->
+  <attr path="api/package[@name='jp.co.brother.adev.devicefinder.lib']/class[@name='AbstractSnmpContext']/field[@name='maxRecvSize']" name="managedName">MaxRecvSizeField</attr>
+
+  <!-- Warning BG8401: Skipping JP.CO.Brother.Adev.Devicefinder.Lib.AsnInteger.Value, due to a duplicate field, method or nested type name -->
+  <attr path="api/package[@name='jp.co.brother.adev.devicefinder.lib']/class[@name='AsnInteger']/field[@name='value']" name="managedName">ValueField</attr>
+
+  <!-- Warning BG8401: Skipping JP.CO.Brother.Adev.Devicefinder.Lib.AsnUnsInteger.Value, due to a duplicate field, method or nested type name -->
+  <attr path="api/package[@name='jp.co.brother.adev.devicefinder.lib']/class[@name='AsnUnsInteger']/field[@name='value']" name="managedName">ValueField</attr>
+
+  <!-- Warning BG8401: Skipping JP.CO.Brother.Adev.Devicefinder.Lib.Pdu.Context, due to a duplicate field, method or nested type name -->
+  <attr path="api/package[@name='jp.co.brother.adev.devicefinder.lib']/class[@name='Pdu']/field[@name='context']" name="managedName">ContextField</attr>
+
+  <!-- Warning BG8401: Skipping JP.CO.Brother.Adev.Devicefinder.Lib.Pdu.MsgType, due to a duplicate field, method or nested type name -->
+  <attr path="api/package[@name='jp.co.brother.adev.devicefinder.lib']/class[@name='Pdu']/field[@name='msg_type']" name="managedName">MsgTypeField</attr>
+
+  <!-- Warning BG8402: Skipping JP.CO.Brother.Adev.Devicefinder.Lib.ISnmpContextBasisFace.VersionId, due to a duplicate field
+ 
+      This is yet another variation on the problem, this time caused by
+      the presence of a string constant field in an interface (not
+      possible in C#). The bindings generator creates abstract classes
+      to hold these fields, resulting in a conflict due to inheritance.
+ 
+      In particular, the abstract `SnmpContextFace` class contains
+      _both_ its own `VersionId` field _and_ the inherited
+      `BasisFaceVersionId` field. -->
+  <attr path="api/package[@name='jp.co.brother.adev.devicefinder.lib']/interface[@name='SnmpContextBasisFace']/field[@name='version_id']" name="managedName">BasisFaceVersionId</attr>
+
+
+  <!-- Warning CS0114: `JP.CO.Brother.Adev.Devicefinder.Lib.SnmpContext.Clone()' hides inherited member `Java.Lang.Object.Clone()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword
+ 
+      The bindings generator doesn't see that this is an override
+      because the `visibility` is set to `public` while
+      `Java.Lang.Object.Clone()` is `protected`. Changing the
+      visibility to match allows the bindings generator to mark this as
+      an override. -->
+  <attr path="/api/package[@name='jp.co.brother.adev.devicefinder.lib']/class[@name='SnmpContext']/method[@name='clone' and count(parameter)=0]" name="visibility">protected</attr>
+</metadata>
