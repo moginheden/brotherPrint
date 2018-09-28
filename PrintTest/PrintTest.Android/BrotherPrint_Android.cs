@@ -60,17 +60,6 @@ namespace PrintTest.Droid
 
                 Bitmap bmp = stringToBitmap(toPrint);
 
-                String externalStorageDir = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads).AbsolutePath;
-
-                //This is just to test that the app can access the file.
-                using (var streamReader = new StreamReader(externalStorageDir + "/printMe.lbx"))
-                {
-                    string content = streamReader.ReadToEnd();
-                    System.Diagnostics.Debug.WriteLine(content);
-                }
-
-                //PrinterStatus status = printer.PrintFile(externalStorageDir + "/printMe.lbx");
-                //PrinterStatus status = printer.PrintFile("icon.png");
                 PrinterStatus status = printer.PrintImage(bmp);
 
                 System.Diagnostics.Debug.WriteLine(status.ErrorCode.ToString());
@@ -86,13 +75,14 @@ namespace PrintTest.Droid
         public Bitmap stringToBitmap(string input)
         {
             Paint paint = new Paint(PaintFlags.AntiAlias);
-            paint.TextSize = 20;
+            paint.TextSize = 200;
             paint.Color = Color.Black;
             paint.TextAlign = Paint.Align.Left;
             float baseline = -paint.Ascent(); // ascent() is negative
             int width = (int)(paint.MeasureText(input) + 0.5f); // round
             int height = (int)(baseline + paint.Descent() + 0.5f);
             Bitmap image = Bitmap.CreateBitmap(width, height, Bitmap.Config.Argb8888);
+            image.EraseColor(Color.White);
             Canvas canvas = new Canvas(image);
             canvas.DrawText(input, 0, baseline, paint);
             return image;
