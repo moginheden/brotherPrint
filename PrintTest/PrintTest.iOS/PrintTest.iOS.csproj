@@ -49,9 +49,13 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: brian.heward@creb.ca (WKTYZV8TCX)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignEntitlements>
+    </CodesignEntitlements>
+    <CodesignProvision />
+    <CodesignExtraArgs />
+    <CodesignResourceRules />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -153,9 +157,18 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\..\BrotherPrinterIOS\BrotherPrinterIOS.csproj">
+      <Project>{0dbd983f-bd8f-4bd6-b08a-ad28457d35ef}</Project>
+      <Name>BrotherPrinterIOS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PrintTest\PrintTest.csproj">
       <Project>{92116328-254B-47CA-B5AA-6B836AD2DB45}</Project>
       <Name>PrintTest</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <NativeReference Include="Native References/BRPtouchPrinterKitW.framework">
+      <Kind>Framework</Kind>
+    </NativeReference>
   </ItemGroup>
 </Project>

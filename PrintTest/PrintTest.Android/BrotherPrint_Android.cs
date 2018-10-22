@@ -4,18 +4,20 @@ using System.Threading;
 using Android.Graphics;
 
 using Com.Brother.Ptouch.Sdk;
+using SkiaSharp;
+using SkiaSharp.Views.Android;
 
 [assembly: Xamarin.Forms.Dependency(typeof(PrintTest.Droid.BrotherPrint_Android))]
 namespace PrintTest.Droid
 {
     class BrotherPrint_Android : IBrotherPrinter
     {
-        public void print(string toPrint)
+        public void print(SKBitmap toPrint)
         {
             ThreadPool.QueueUserWorkItem(o => printThread(toPrint));
         }
 
-        public void printThread(string toPrint)
+        public void printThread(SKBitmap toPrint)
         {
             try
             {
@@ -53,16 +55,18 @@ namespace PrintTest.Droid
                 printInfo.LabelNameIndex = LabelInfo.PT.W36.Ordinal();
                 printInfo.IsAutoCut = true;
                 printInfo.IsCutAtEnd = true;
+                printInfo.IsHalfCut = true;
 
                 printer.SetPrinterInfo(printInfo);
 
                 printer.StartCommunication();
 
-                Bitmap bmp = stringToBitmap(toPrint);
+                using (Bitmap bmp = toPrint.ToBitmap())
+                {
+                    PrinterStatus status = printer.PrintImage(bmp);
 
-                PrinterStatus status = printer.PrintImage(bmp);
-
-                System.Diagnostics.Debug.WriteLine(status.ErrorCode.ToString());
+                    bmp.Recycle();
+                }
 
                 printer.EndCommunication();
             }
