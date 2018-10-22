@@ -39,9 +39,6 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BRPtouchPrinterKitW.linkwith.cs">
-      <DependentUpon>BRPtouchPrinterKitW</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -54,9 +51,6 @@
     <NativeReference Include="Native References/BRPtouchPrinterKitW.framework">
       <Kind>Framework</Kind>
     </NativeReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="BRPtouchPrinterKitW" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
 </Project>

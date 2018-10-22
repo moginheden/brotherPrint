@@ -5,7 +5,7 @@ using System.Text;
 
 using Foundation;
 using SkiaSharp;
-
+using BRPtouchPrintKitW;
 
 [assembly: Xamarin.Forms.Dependency(typeof(PrintTest.iOS.BrotherPrint_iOS))]
 namespace PrintTest.iOS
@@ -15,7 +15,8 @@ namespace PrintTest.iOS
 
         public void print(SKBitmap toPrint)
         {
-            
+            BRPtouchPrinter printer = null;
+
         }
     }
 }
