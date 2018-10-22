@@ -17,12 +17,10 @@ namespace PrintTest
 
         private void btnPrint_Clicked(object sender, EventArgs e)
         {
-//            DependencyService.Get<IBrotherPrinter>().print(generateLabelBitmap("Anne-Marie", "Bruzga-Luchak", "Calgary Real Estate Board"));
-//            DependencyService.Get<IBrotherPrinter>().print(generateLabelBitmap("Ben", "Eby", "RE/MAX REAL ESTATE (MOUNTAIN VIEW)"));
-            DependencyService.Get<IBrotherPrinter>().print(generateLabelBitmap("Amy", "Bates", "CIR REALTY"));
+            DependencyService.Get<IBrotherPrinter>().print(generateLabelBitmap("John", "Doe", "Jack of all trades, master of none"));
         }
 
-        private SKBitmap generateLabelBitmap(string fName, string lName, string brokerage)
+        private SKBitmap generateLabelBitmap(string fName, string lName, string title)
         {
             const int width = 596;
             const int margin = 4;
@@ -54,7 +52,7 @@ namespace PrintTest
 
             //2nd line brokerage
             paint.TextSize = maxFontSizeBrokerage;
-            textWidth = (int)(paint.MeasureText(brokerage) + 0.5f);
+            textWidth = (int)(paint.MeasureText(title) + 0.5f);
             if (textWidth > width)
             {
                 paint.TextSize = ((float)width) / textWidth * maxFontSizeBrokerage;
@@ -62,7 +60,7 @@ namespace PrintTest
             }
             baseline = -paint.FontMetrics.Ascent;
             verticalOffset = (baseline / 2) + (height / 4) + (height / 2);
-            canvas.DrawText(brokerage, width/2, verticalOffset, paint);
+            canvas.DrawText(title, width/2, verticalOffset, paint);
 
             return bitmap;
         }
