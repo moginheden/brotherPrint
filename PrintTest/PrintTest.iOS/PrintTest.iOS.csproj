@@ -166,9 +166,4 @@
       <Name>PrintTest</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <NativeReference Include="Native References/BRPtouchPrinterKitW.framework">
-      <Kind>Framework</Kind>
-    </NativeReference>
-  </ItemGroup>
 </Project>
