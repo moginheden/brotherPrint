@@ -150,7 +150,7 @@
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="NativeLibrary, Version=1.0.6871.23009, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="NativeLibrary, Version=1.0.6871.27303, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\iPhone\Debug\NativeLibrary.dll</HintPath>
     </Reference>

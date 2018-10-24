@@ -231,5 +231,148 @@ namespace BRPtouchPrintKitW
         Ble,
         Error
     }
+
+    public enum BRPtouchPrinterErrors : long
+    {
+        ERROR_NONE_ = 0,
+        ERROR_TIMEOUT = -3,
+        ERROR_BADPAPERRES = -4,
+        ERROR_IMAGELARGE = -6,
+        ERROR_CREATESTREAM = -7,
+        ERROR_OPENSTREAM = -8,
+        ERROR_FILENOTEXIST = -9,
+        ERROR_PAGERANGEERROR = -10,
+        ERROR_NOT_SAME_MODEL_ = -11,
+        ERROR_BROTHER_PRINTER_NOT_FOUND_ = -12,
+        ERROR_PAPER_EMPTY_ = -13,
+        ERROR_BATTERY_EMPTY_ = -14,
+        ERROR_COMMUNICATION_ERROR_ = -15,
+        ERROR_OVERHEAT_ = -16,
+        ERROR_PAPER_JAM_ = -17,
+        ERROR_HIGH_VOLTAGE_ADAPTER_ = -18,
+        ERROR_CHANGE_CASSETTE_ = -19,
+        ERROR_FEED_OR_CASSETTE_EMPTY_ = -20,
+        ERROR_SYSTEM_ERROR_ = -21,
+        ERROR_NO_CASSETTE_ = -22,
+        ERROR_WRONG_CASSENDTE_DIRECT_ = -23,
+        ERROR_CREATE_SOCKET_FAILED_ = -24,
+        ERROR_CONNECT_SOCKET_FAILED_ = -25,
+        ERROR_GET_OUTPUT_STREAM_FAILED_ = -26,
+        ERROR_GET_INPUT_STREAM_FAILED_ = -27,
+        ERROR_CLOSE_SOCKET_FAILED_ = -28,
+        ERROR_OUT_OF_MEMORY_ = -29,
+        ERROR_SET_OVER_MARGIN_ = -30,
+        ERROR_NO_SD_CARD_ = -31,
+        ERROR_FILE_NOT_SUPPORTED_ = -32,
+        ERROR_EVALUATION_TIMEUP_ = -33,
+        ERROR_WRONG_CUSTOM_INFO_ = -34,
+        ERROR_NO_ADDRESS_ = -35,
+        ERROR_NOT_MATCH_ADDRESS_ = -36,
+        ERROR_FILE_NOT_FOUND_ = -37,
+        ERROR_TEMPLATE_FILE_NOT_MATCH_MODEL_ = -38,
+        ERROR_TEMPLATE_NOT_TRANS_MODEL_ = -39,
+        ERROR_COVER_OPEN_ = -40,
+        ERROR_WRONG_LABEL_ = -41,
+        ERROR_PORT_NOT_SUPPORTED_ = -42,
+        ERROR_WRONG_TEMPLATE_KEY_ = -43,
+        ERROR_BUSY_ = -44,
+        ERROR_TEMPLATE_NOT_PRINT_MODEL_ = -45,
+        ERROR_CANCEL_ = -46,
+        ERROR_PRINTER_SETTING_NOT_SUPPORTED_ = -47,
+        ERROR_INVALID_PARAMETER_ = -48,
+        ERROR_INTERNAL_ERROR_ = -49,
+        ERROR_TEMPLATE_NOT_CONTROL_MODEL_ = -50,
+        ERROR_TEMPLATE_NOT_EXIST_ = -51,
+        ERROR_BADENCRYPT_ = -52, // This does not occur in iOS
+        ERROR_BUFFER_FULL_ = -53,
+        ERROR_TUBE_EMPTY_ = -54,
+        ERROR_TUBE_RIBON_EMPTY_ = -55,
+        ERROR_UPDATE_FRIM_NOT_SUPPORTED_ = -56, // This does not occur in iOS
+        ERROR_OS_VERSION_NOT_SUPPORTED_ = -57, // This does not occur in iOS
+        ERROR_MINIMUM_LENGTH_LIMIT_ = -58
+    }
+
+    public enum PrintFlags : int
+    {
+        OPTION_AUTOCUT = 0x00000001,
+        OPTION_CUTATEND = 0x00000002,
+
+        PRINT_ORIGINAL = 0x00,
+        PRINT_FIT = 0x01, // Deprecated
+        PRINT_SCALE = 0x02,
+        PRINT_FIT_TO_PAGE = 0x03,
+        PRINT_FIT_TO_PAPER = 0x04,
+
+        ORI_LANDSCAPE = 0x00,
+        ORI_PORTRATE = 0x01,
+
+        // Image processing Setting
+        HALFTONE_BINARY = 0x00,
+        HALFTONE_DITHER = 0x01,
+        HALFTONE_ERRDIF = 0x02,
+
+        ALIGN_LEFT = 0x00,
+        ALIGN_CENTER = 0x01,
+        ALIGN_RIGHT = 0x02,
+
+        ALIGN_TOP = 0x00,
+        ALIGN_MIDDLE = 0x01,
+        ALIGN_BOTTOM = 0x02,
+
+        PAPERALIGN_LEFT = 0x00,
+        PAPERALIGN_CENTER = 0x01,
+        PAPERALIGN_RIGHT = 0x02,
+
+        RET_ERR_PAPERNAME = -1,
+        RET_ERR_OPTION = -2,
+        RET_ERR_DENSITY = -3,
+        RET_ERR_PRINTMODE = -4,
+        RET_ERR_ORIENTATION = -5,
+        RET_ERR_HALFTONE = -6,
+        RET_ERR_HORIZONTAL = -7,
+        RET_ERR_VERTICAL = -8,
+        RET_ERR_PAPERALIGN = -9,
+        RET_ERR_EXTFLAG = -10,
+
+        // Cut Mode
+        FLAG_M_AUTOCUT = 0x40,
+        FLAG_M_MIRROR = 0x80,
+
+        FLAG_K_DRAFT = 0x01,
+        FLAG_K_HALFCUT = 0x04,
+        FLAG_K_NOCHAIN = 0x08,
+        FLAG_K_SPTAPE = 0x10,
+        FLAG_K_AFTERCUT = 0x20,
+        FLAG_K_HGPRINT = 0x40,
+        FLAG_K_COPY = 0x80,
+
+
+        EXT_PJ673_ENCRYPT = 0x01,
+        EXT_PJ673_CARBON = 0x02,
+        EXT_PJ673_DASHPRINT = 0x04,
+        EXT_PJ673_NFD = 0x08,
+        EXT_PJ673_EOP = 0x10,
+        EXT_PJ673_EPR = 0x20,
+        EXT_PJ700_FP = 0x40,
+
+        COMPRESS_ID = 0x4D,
+        COMPRESS_DISABLED = 0x00,
+        COMPRESS_PRESERVED = 0x01,
+        COMPRESS_ENABLED = 0x02,
+
+        PJROLLCASE_OFF = 1, //Do not user printer case
+        PJROLLCASE_ON = 2, //Use printer case with anti-curling mechanism
+        PJROLLCASE_WITH_ANTICURL = 3, // Use printer case without anti-curling mechanism
+
+        PJ_ROLL = 0x01,
+        PJ_CUT_PAPER = 0x02,
+
+        //Print Quality
+        PRINTQUALITY_LOW_RESOLUTION = 1,
+        PRINTQUALITY_NORMAL = 2,
+        PRINTQUALITY_DOUBLE_SPEED = 3,
+        PRINTQUALITY_HIGH_RESOLUTION = 4,
+        PRINTQUALITY_HIGH_RESOLUTION_USING_HR_IMAGE = 5
+    }
 }
 

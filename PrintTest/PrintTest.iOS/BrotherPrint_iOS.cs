@@ -21,6 +21,15 @@ namespace PrintTest.iOS
                 BRPtouchPrintInfo printInfo = new BRPtouchPrintInfo();
 
                 printInfo.StrPaperName = @"36mm";
+                printInfo.NPrintMode = (int)PrintFlags.PRINT_FIT;
+                printInfo.NOrientation = (int)PrintFlags.ORI_LANDSCAPE;
+                printInfo.NHorizontalAlign = (int)PrintFlags.ALIGN_CENTER;
+                printInfo.NVerticalAlign = (int)PrintFlags.ALIGN_MIDDLE;
+                printInfo.BHalfCut = true;
+                printInfo.BEndcut = true;
+                printInfo.NAutoCutFlag = (int)PrintFlags.OPTION_AUTOCUT;
+                printInfo.NAutoCutCopies = 1;
+                printInfo.NCustomLength = toPrint.Width;
 
                 BRPtouchPrinter printer = new BRPtouchPrinter("Brother PT-P950NW", ConnectionType.Wlan);
 
@@ -28,15 +37,15 @@ namespace PrintTest.iOS
                 printer.SetPrintInfo(printInfo);
 
                 bool worked = printer.StartCommunication();
-
-                CoreGraphics.CGImage cgImage2 = new CoreGraphics.CGImage(toPrint.Width, toPrint.Height, 8, toPrint.BytesPerPixel * 8, toPrint.BytesPerPixel * toPrint.Width, CoreGraphics.CGColorSpace.CreateGenericGray(), CoreGraphics.CGBitmapFlags.None, new CoreGraphics.CGDataProvider(toPrint.Bytes), null, false, CoreGraphics.CGColorRenderingIntent.Default);
-
-                using (CoreGraphics.CGImage cgImage = toPrint.ToCGImage())
+                if (worked)
                 {
-                    printer.PrintImage(cgImage, 1);
-                    printer.PrintImage(cgImage2, 1);
+                    using (CoreGraphics.CGImage cgImage2 = new CoreGraphics.CGImage(toPrint.Width, toPrint.Height, 8, toPrint.BytesPerPixel * 8, toPrint.BytesPerPixel * toPrint.Width, CoreGraphics.CGColorSpace.CreateGenericGray(), CoreGraphics.CGBitmapFlags.None, new CoreGraphics.CGDataProvider(toPrint.Bytes), null, false, CoreGraphics.CGColorRenderingIntent.Default))
+                    {
+                        BRPtouchPrinterErrors result2 = (BRPtouchPrinterErrors)printer.PrintImage(cgImage2, 1);
+
+                        printer.EndCommunication();
+                    }
                 }
-                printer.EndCommunication();
             }
             catch (Exception ex)
             {
